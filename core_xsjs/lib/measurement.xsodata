@@ -1,0 +1,5 @@
+service {
+	"Measurements_REV01_view" as "TSMeasurements" key("measurementId");
+}
+
+// The different views get their own names to be 

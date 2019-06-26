@@ -1,0 +1,14 @@
+{
+  "CROSS_SCHEMA_REV01": {
+    "object_owner": {
+      "roles": [
+        "REV01_CONTAINER_ACCESS"
+      ]
+    },
+    "application_user": {
+      "roles": [
+        "REV01_CONTAINER_ACCESS"
+      ]
+    }
+  }
+}

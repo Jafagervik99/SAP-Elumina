@@ -1,0 +1,27 @@
+/* Enter your custom styles here */
+#chartPanel {
+	background-color: "yellow";
+}
+
+#oSelectSI {
+	color: "green";	
+}
+
+.test {
+	font-size: "40px";	
+	line-spacing: 12.0;
+}
+
+.class_a{
+	background-color: #373737 !important;
+	color: #1c1c1c !important;
+}
+
+/* Overrides */
+.sapMIBar.sapMHeader-CTX {
+    color: #FFFFFF;
+    background-color: #000000 !important;
+    filter: none;
+    background-image: none;
+}
+

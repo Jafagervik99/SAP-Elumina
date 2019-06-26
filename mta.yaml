@@ -1,0 +1,69 @@
+ID: SAP-Elumina
+_schema-version: '2.0'
+version: 0.0.1
+modules:
+  - name: revolveFrontend
+    type: html5
+    path: revolveFrontend
+    requires:
+      - name: UAA-service
+      - name: core_xsjs_api
+        group: destinations
+        properties:
+          name: core_xsjs_api_destination
+          url: '~{url}'
+          forwardAuthToken: true
+          timeout: 1200000
+          
+  - name: Database
+    type: hdb
+    path: Database
+    requires:
+      - name: hdi_Database
+        properties:
+          TARGET_CONTAINER: '~{hdi-container-name}'
+      - name: CROSS_SCHEMA_REV01
+        group: SERVICE_REPLACEMENTS
+        properties:
+          key: ServiceName_1
+          service: '~{the-service-name}'
+      - name: UAA-service
+      
+  - name: core_xsjs
+    type: nodejs
+    path: core_xsjs
+    provides:
+      - name: core_xsjs_api
+        properties:
+          url: '${default-url}'
+    requires:
+      - name: UAA-service
+      - name: hdi_Database
+      - name: Database
+        
+resources:
+  - name: UAA-service
+    type: com.sap.xs.uaa-space
+    parameters:
+      config-path: ./xs-security.json
+      
+  - name: hdi_Database
+    parameters:
+      config:
+        schema: Revolve
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
+    
+  - name: ui5
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: sapui5_sb
+      service-plan: sapui5-1.52
+      
+  - name: CROSS_SCHEMA_REV01
+    parameters:
+      service-name: CROSS_SCHEMA_REV01
+    properties:
+      the-service-name: '${service-name}'
+    type: org.cloudfoundry.existing-service

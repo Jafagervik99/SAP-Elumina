@@ -1,0 +1,55 @@
+
+{
+	"name": "Line Chart",
+	"vizType": "timeseries_line",
+	"value": ["Value"],
+	"dataset": {
+		"dimensions": [{
+			"name": "time",
+			"value": "{measureTime}",
+			"dataType": "date"
+		}],
+		"measures": [{
+			"name": "value",
+			"value": "{value}"
+		}],
+		"data": {
+			"path": "/"
+		}
+	},
+	"vizProperties": {
+		"plotArea": {
+			"window": {
+				"start": "firstDataPoint",
+				"end": "lastDataPoint"
+			},
+			"dataLabel": {
+				"formatString": "0",
+				"visible": false
+			}
+		},
+		"valueAxis": {
+			"visible": true,
+			"label": {
+				"formatString": "0"
+			},
+			"title": {
+				"visible": false
+			}
+		},
+		"timeAxis": {
+			"title": {
+				"visible": false
+			},
+			"interval": {
+				"unit": ""
+			}
+		},
+		"title": {
+			"visible": false
+		},
+		"interaction": {
+			"syncValueAxis": false
+		}
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"gauge1": {
+		"value": 43,
+		"min": 0,
+		"max": 100,
+		"symbol": "%",
+		"pointer": true,
+		"levelColors": [{
+			"low": "#00FF00",
+			"medium": "#FFFF00",
+			"high": "#FF0000"
+		}],
+		"pointerOptions": [{
+			"toplength": 8,
+			"bottomlength": -20,
+			"bottomwidth": 6,
+			"color": "#8e8e93"
+		}],
+		"gaugeWidthScale": 0.1,
+		"counter": true
+	}
+}

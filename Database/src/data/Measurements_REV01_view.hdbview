@@ -1,0 +1,1 @@
+VIEW "Measurements_REV01_view" as SELECT * from "Measurements_REV01"

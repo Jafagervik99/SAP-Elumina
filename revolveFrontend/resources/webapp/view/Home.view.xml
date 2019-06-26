@@ -1,0 +1,72 @@
+<mvc:View xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:me="sap.me"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:viz.data="sap.viz.ui5.data" controllerName="Revolve.revolveFrontend.controller.Home" displayBlock="true">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+						<!--<HBox width="100%" id="hbox0">
+					        <items>
+					            <VBox width="100%" direction="Column" id="vbox0" alignItems="End">
+					            <items>
+					                <Button xmlns="sap.m" text="Button" id="button0"/>
+					            </items>
+					            </VBox>
+					            <VBox width="100%" direction="Column" id="vbox1" alignItems="Center">
+					            <items>
+					                <Button xmlns="sap.m" text="Button" id="button1"/>
+					            </items>
+					            </VBox>
+					            <VBox width="100%" direction="Column" id="vbox2" alignItems="Start">
+					            <items>
+					                <Button xmlns="sap.m" text="Button" id="button2"/>
+					            </items>
+					            </VBox>
+					        </items>
+					    </HBox>-->
+						<HBox width="100%" id="hbox0">
+							<items>
+								<VBox width="100%" direction="Column" id="graf1" alignItems="Start">
+									<items>
+										<HBox id="selectGraf1" width="100%" alignItems="Center">
+											<Select id="oSelectM" width="15rem" class="sapUiMediumMargin" forceSelection="false"
+												items="{ path: '/', sorter: { path: 'measurementId' }, templateShareable:'true' }" change="onSelectionChange">
+												<core:ListItem key="{measurementId}" text="{measurementId}"/>
+											</Select>
+											<Select id="oSelectSI" width="15rem" class="sapUiMediumMargin" forceSelection="false"
+												items="{ path: '/', sorter: { path: 'measurementId' }, templateShareable:'true' }" change="onSelectionChange">
+												<core:ListItem key="{seriesIdentifierId}" text="{seriesIdentifierId}"/>
+											</Select>
+										</HBox>
+										<HBox width="100%">
+											<Panel id="chartPanel" width="100%" height="600px" headerText="Timeseries Chart" expandable="false" expanded="true">
+												<viz:Popover id="idPopOver"/>
+												<viz:VizFrame id="idVizFrame" height="600px" width="100%" vizType="timeseries_line">
+													<viz:dataset>
+														<viz.data:FlattenedDataset data="{/}">
+															<viz.data:dimensions>
+																<viz.data:DimensionDefinition name="time" value="{time}" dataType="date"/>
+															</viz.data:dimensions>
+															<viz.data:measures>
+																<viz.data:MeasureDefinition name="value" value="{value}"/>
+															</viz.data:measures>
+														</viz.data:FlattenedDataset>
+													</viz:dataset>
+													<viz:feeds>
+														<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="value"/>
+														<viz.feeds:FeedItem uid="timeAxis" type="Dimension" values="time"/>
+													</viz:feeds>
+												</viz:VizFrame>
+											</Panel>
+										</HBox>
+									</items>
+								</VBox>
+							</items>
+						</HBox>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

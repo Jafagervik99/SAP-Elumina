@@ -1,0 +1,52 @@
+@OData.publish : true
+/*@@layout{"layoutInfo":{"x":-268,"y":-160.5}}*/
+
+context TelemetrySensors {
+    /*@@layout{"layoutInfo":{"x":-329,"y":-370.5}}*/
+
+    entity Run {
+        key RunId     : String(32) NOT NULL;
+            Name_     : String(20) NOT NULL;
+            Location_ : String(30) NOT NULL;
+            Car       : String(20) NOT NULL;
+            Driver    : String(30) NOT NULL;
+    }
+    technical configuration {
+        column store;
+    };
+
+
+    entity Sensor {
+        key SensorId : String(32) NOT NULL;
+            Name_    : String(25) NOT NULL;
+            Unit     : String(20) NOT NULL;
+    }
+    technical configuration {
+        column store;
+    };
+
+
+    entity SeriesIdentifier {
+        key SeriesIdentifierId : String(32) NOT NULL;
+            RunId              : association[1] to Run;
+            SensorId           : association[1] to Sensor;
+    }
+    technical configuration {
+        column store;
+    };
+
+
+    entity Measurements {
+        key measurementId      : String(32) NOT NULL;
+            seriesIdentifierId : Integer NOT NULL;
+            measureTime        : UTCTimestamp NOT NULL;
+            value              : Decimal(20, 5);
+
+        series(series key(seriesIdentifierId)
+        period for series(measureTime)
+        not equidistant);
+    }
+    technical configuration {
+        column store;
+    };
+};

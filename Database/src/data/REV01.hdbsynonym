@@ -1,0 +1,9 @@
+{
+  "Measurements_REV01": {
+    "target": {
+      "object": "REV_Measurements",
+      "schema": "REV01",
+      "database": "REV"
+    }
+  }
+}
