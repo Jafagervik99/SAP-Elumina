@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ResponsivePopover id="" title="{Name}" visible="false" class="sapUiPopupWithPadding" placement="Bottom">
+		<content>
+			<Select width="auto" class="sapUiSmallMargin" forceSelection="true"
+				items="{ path: '/', sorter: { path: 'measurementId' }, templateShareable:'true' }" change="onChangeRun">
+				<core:ListItem key="{measurementId}" text="{measurementId}"/>
+			</Select>
+			<Select width="auto" class="sapUiSmallMargin" forceSelection="true"
+				items="{ path: '/', sorter: { path: 'seriesIdentifierId' }, templateShareable:'true' }" change="onChangeSensor">
+				<core:ListItem key="{seriesIdentifierId}" text="{seriesIdentifierId}"/>
+				<!--<core:Fragment binding="{ path:'/', sorter: {path: seriesIdentifierId }" fragmentName="xxx.fragment.User" type="XML"/>-->
+			</Select>
+			<DatePicker width="auto" valueFormat="dd-MM-yyyy" class="sapUiSmallMargin" change="onChangeDate"
+				value="{path:'/dateValue', type:'sap.ui.model.type.Date', formatOptions: { style: 'long', strictParsing: true}}"/>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

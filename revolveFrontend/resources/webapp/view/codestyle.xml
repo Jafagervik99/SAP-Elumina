@@ -1,0 +1,19 @@
+<!--<HBox width="100%" id="hbox0">
+	<items>
+		<VBox width="100%" direction="Column" id="vbox0" alignItems="End">
+			<items>
+				<Button xmlns="sap.m" text="Button" id="button0"/>
+			</items>
+		</VBox>
+		<VBox width="100%" direction="Column" id="vbox1" alignItems="Center">
+			<items>
+				<Button xmlns="sap.m" text="Button" id="button1"/>
+			</items>
+		</VBox>
+		<VBox width="100%" direction="Column" id="vbox2" alignItems="Start">
+			<items>
+				<Button xmlns="sap.m" text="Button" id="button2"/>
+			</items>
+		</VBox>
+	</items>
+</HBox>-->

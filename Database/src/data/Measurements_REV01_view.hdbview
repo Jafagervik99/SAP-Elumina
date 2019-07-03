@@ -1,1 +1,6 @@
 VIEW "Measurements_REV01_view" as SELECT * from "Measurements_REV01"
+VIEW "SeriesIdentifier_REV01_view" as SELECT * FROM "SeriesIdentifier_REV01"
+VIEW "Sensor_REV01_view" as SELECT * FROM "Sensor_REV01"
+VIEW "Run_REV01_view" as SELECT * FROM "Run_REV01"
+VIEW "Car_REV01_view" as SELECT * FROM "Car_REV01"
+VIEW "SensorCollection_REV01_view" as SELECT * FROM "SensorCollection_REV01"

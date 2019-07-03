@@ -1,0 +1,125 @@
+
+<mvc:View xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:me="sap.me"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:viz.data="sap.viz.ui5.data" controllerName="Revolve.revolveFrontend.controller.Home" displayBlock="true">
+	<App>
+		<Page title="{i18n>title}" showHeader="true" class="class_a">
+			<headerContent>
+				<Image src="RevolvePNG.png" densityAware="false" width="10%"/>
+			</headerContent>
+			<!--<Shell backgroundColor="#baff00">-->
+			<content>
+				<!--<l:VerticalLayout width="100%" class="gridWrapper">
+					<l:Grid defaultSpan="XL3 L6 M6 S6">
+						<Select id="oSelectMLeft" width="15rem" class="sapUiMediumMargin" forceSelection="false"
+							items="{ path: '/', sorter: { path: 'measurementId' }, templateShareable:'true' }" change="onSelectionChange">
+							<core:ListItem key="{measurementId}" text="{measurementId}"/>
+						</Select>
+						<Select id="oSelectSILeft" width="15rem" class="sapUiMediumMargin" forceSelection="false"
+							items="{ path: '/', sorter: { path: 'seriesIdentifierId' }, templateShareable:'true' }" change="onSelectionChange">
+							<core:ListItem key="{seriesIdentifierId}" text="{seriesIdentifierId}"/>
+						</Select>
+						<Select id="oSelectMRight" width="15rem" class="sapUiMediumMargin" forceSelection="false"
+							items="{ path: '/', sorter: { path: 'measurementId' }, templateShareable:'true' }" change="onSelectionChange">
+							<core:ListItem key="{measurementId}" text="{measurementId}"/>
+						</Select>
+						<Select id="oSelectSIRight" width="15rem" class="sapUiMediumMargin" forceSelection="false"
+							items="{ path: '/', sorter: { path: 'seriesIdentifierId' }, templateShareable:'true' }" change="onSelectionChange">
+							<core:ListItem key="{seriesIdentifierId}" text="{seriesIdentifierId}"/>
+						</Select>
+					</l:Grid>
+				</l:VerticalLayout>
+				-->
+				<HBox fitContainer="true" alignItems="Stretch">
+					<items>
+						<VBox fitContainer="true">
+							<items>
+								<viz:Popover id="idPopOver"/>
+								<viz:VizFrame id="idVizFrame" width="100%" vizType="timeseries_line">
+									<viz:dataset>
+										<viz.data:FlattenedDataset data="{/}">
+											<viz.data:dimensions>
+												<viz.data:DimensionDefinition name="measureTime" value="{measureTime}" dataType="date"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+												<viz.data:MeasureDefinition name="value" value="{value}" height="700px"/>
+											</viz.data:measures>
+										</viz.data:FlattenedDataset>
+									</viz:dataset>
+									<viz:feeds>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="value"/>
+										<viz.feeds:FeedItem uid="timeAxis" type="Dimension" values="measureTime"/>
+									</viz:feeds>
+								</viz:VizFrame>
+								<viz:Popover id="idPopOver"/>
+								<viz:VizFrame id="idVizFrame" width="100%" vizType="timeseries_line">
+									<viz:dataset>
+										<viz.data:FlattenedDataset data="{/}">
+											<viz.data:dimensions>
+												<viz.data:DimensionDefinition name="measureTime" value="{measureTime}" dataType="date"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+												<viz.data:MeasureDefinition name="value" value="{value}" height="700px"/>
+											</viz.data:measures>
+										</viz.data:FlattenedDataset>
+									</viz:dataset>
+									<viz:feeds>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="value"/>
+										<viz.feeds:FeedItem uid="timeAxis" type="Dimension" values="measureTime"/>
+									</viz:feeds>
+								</viz:VizFrame>
+							</items>
+						</VBox>
+						<VBox fitContainer="true" alignItems="Stretch">
+							<items>
+								<Image src="nova.png" densityAware="false" width="10%"/>
+							</items>
+						</VBox>
+						<VBox fitContainer="true" alignItems="Stretch">
+							<items>
+								<viz:Popover id="idPopOver"/>
+								<viz:VizFrame id="idVizFrame" width="100%" vizType="timeseries_line">
+									<viz:dataset>
+										<viz.data:FlattenedDataset data="{/}">
+											<viz.data:dimensions>
+												<viz.data:DimensionDefinition name="measureTime" value="{measureTime}" dataType="date"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+												<viz.data:MeasureDefinition name="value" value="{value}" height="700px"/>
+											</viz.data:measures>
+										</viz.data:FlattenedDataset>
+									</viz:dataset>
+									<viz:feeds>
+										<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="value"/>
+										<viz.feeds:FeedItem uid="timeAxis" type="Dimension" values="measureTime"/>
+									</viz:feeds>
+								</viz:VizFrame>
+							</items>
+						</VBox>
+					</items>
+				</HBox>
+				<!--VBox>
+							<Panel id="gaugeChart" width="100%" height="100%" headerText="Gauge Chart" expandable="true" expanded="true">
+								<html:div id="id_Gauge1"></html:div>
+							</Panel>
+							<Panel id="gaugeChart2" width="100%" height="100%" headerText="Temperature" expandable="true" expanded="true">
+								<html:div id="id_Gauge2"></html:div>
+							</Panel>
+							<Panel id="gaugeChart3" width="100%" height="100%" headerText="Voltage" expandable="true" expanded="true">
+								<html:div id="id_Gauge3"></html:div>
+							</Panel>
+							<layoutData>
+								<l:GridData span="L6 M12 S12"/>
+							</layoutData>
+						</VBox>-->
+			</content>
+			<footer>
+				<Bar>
+					<contentMiddle>
+						<Text text="Made by Revolve NTNU and SAP" class="class_a"></Text>
+					</contentMiddle>
+				</Bar>
+			</footer>
+		</Page>
+	</App>
+</mvc:View>

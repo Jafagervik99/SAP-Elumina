@@ -3,6 +3,10 @@
 	background-color: "yellow";
 }
 
+#page {
+	background-color: #FF0000 !important;
+}
+
 #oSelectSI {
 	color: "green";	
 }
@@ -13,15 +17,48 @@
 }
 
 .class_a{
-	background-color: #373737 !important;
 	color: #1c1c1c !important;
 }
 
 /* Overrides */
+.sapMTitle{
+	color: #FFD700;
+}
+
+
 .sapMIBar.sapMHeader-CTX {
-    color: #FFFFFF;
+    color: white;
     background-color: #000000 !important;
     filter: none;
     background-image: none;
 }
 
+.sapMShellBrandingBar {
+    height: 0px;
+}
+
+.sapMPageHeader::before {
+    border-top-width: 0rem;
+}
+/* Gir bakgr */
+.sapMPageEnableScrolling {
+	background-color: #333 !important;
+	color: white;
+}
+
+/* Panel headers */
+.sapMPanelHdr {
+	color: white;
+}
+
+.sapMBarPH.sapMBarContainer {
+	background-color: #FFD700;
+}
+
+.sapMFlexBox.sapMVBox.sapMFlexBoxJustifyStart.sapMFlexBoxAlignItemsStretch.sapMFlexBoxWrapNoWrap.sapMFlexBoxAlignContentStretch.sapMFlexBoxBGTransparent {
+	
+}
+
+.sapMBarPH.sapMBarContainer {
+	
+}

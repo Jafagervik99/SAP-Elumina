@@ -1,70 +1,346 @@
 <mvc:View xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:me="sap.me"
 	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
 	xmlns:viz.data="sap.viz.ui5.data" controllerName="Revolve.revolveFrontend.controller.Home" displayBlock="true">
-	<Shell id="shell">
+	<Shell id="shell" backgroundColor="#baff00" appWidthLimited="false">
 		<App id="app">
 			<pages>
 				<Page id="page" title="{i18n>title}">
+					<headerContent>
+						<Image src="RevolvePNG.png" densityAware="false" width="10%"/>
+					</headerContent>
 					<content>
-						<!--<HBox width="100%" id="hbox0">
-					        <items>
-					            <VBox width="100%" direction="Column" id="vbox0" alignItems="End">
-					            <items>
-					                <Button xmlns="sap.m" text="Button" id="button0"/>
-					            </items>
-					            </VBox>
-					            <VBox width="100%" direction="Column" id="vbox1" alignItems="Center">
-					            <items>
-					                <Button xmlns="sap.m" text="Button" id="button1"/>
-					            </items>
-					            </VBox>
-					            <VBox width="100%" direction="Column" id="vbox2" alignItems="Start">
-					            <items>
-					                <Button xmlns="sap.m" text="Button" id="button2"/>
-					            </items>
-					            </VBox>
-					        </items>
-					    </HBox>-->
-						<HBox width="100%" id="hbox0">
+						<VBox width="100%" id="WholeDamnThing">
 							<items>
-								<VBox width="100%" direction="Column" id="graf1" alignItems="Start">
+								<HBox width="100%" height="75%" id="GraferOgBilde">
 									<items>
-										<HBox id="selectGraf1" width="100%" alignItems="Center">
-											<Select id="oSelectM" width="15rem" class="sapUiMediumMargin" forceSelection="false"
-												items="{ path: '/', sorter: { path: 'measurementId' }, templateShareable:'true' }" change="onSelectionChange">
-												<core:ListItem key="{measurementId}" text="{measurementId}"/>
-											</Select>
-											<Select id="oSelectSI" width="15rem" class="sapUiMediumMargin" forceSelection="false"
-												items="{ path: '/', sorter: { path: 'measurementId' }, templateShareable:'true' }" change="onSelectionChange">
-												<core:ListItem key="{seriesIdentifierId}" text="{seriesIdentifierId}"/>
-											</Select>
-										</HBox>
-										<HBox width="100%">
-											<Panel id="chartPanel" width="100%" height="600px" headerText="Timeseries Chart" expandable="false" expanded="true">
-												<viz:Popover id="idPopOver"/>
-												<viz:VizFrame id="idVizFrame" height="600px" width="100%" vizType="timeseries_line">
-													<viz:dataset>
-														<viz.data:FlattenedDataset data="{/}">
-															<viz.data:dimensions>
-																<viz.data:DimensionDefinition name="time" value="{time}" dataType="date"/>
-															</viz.data:dimensions>
-															<viz.data:measures>
-																<viz.data:MeasureDefinition name="value" value="{value}"/>
-															</viz.data:measures>
-														</viz.data:FlattenedDataset>
-													</viz:dataset>
-													<viz:feeds>
-														<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="value"/>
-														<viz.feeds:FeedItem uid="timeAxis" type="Dimension" values="time"/>
-													</viz:feeds>
-												</viz:VizFrame>
-											</Panel>
-										</HBox>
+										<!-- LEFT SECTION -->
+										<VBox id="leftSection" width="70%" height="100%">
+											<!-- FRONT LEFT -->
+											<VBox width="100%" height="100%" direction="Column" id="leftUppper" alignItems="Start">
+												<items>
+													<VBox width="100%" height="100%">
+														<items>
+															<Panel id="chartPanelFL" expandable="false" expanded="true">
+																<headerToolbar>
+																	<Toolbar>
+																		<Title text="Header"/>
+																		<ToolbarSpacer/>
+																		<Button icon="sap-icon://settings" press="onSettingsButtonChange"/>
+																	</Toolbar>
+																</headerToolbar>
+																		<ResponsivePopover id="popoverFL" title="{Name}" visible="true" class="sapUiPopupWithPadding" placement="Bottom">
+																			<content>
+																				<Select width="auto" class="sapUiSmallMargin" forceSelection="true"
+																					items="{ path: '/', sorter: { path: 'measurementId' }, templateShareable:'true' }" change="onChangeRun">
+																					<core:ListItem key="{measurementId}" text="{measurementId}"/>
+																				</Select>
+																				<Select width="auto" class="sapUiSmallMargin" forceSelection="true"
+																					items="{ path: '/', sorter: { path: 'seriesIdentifierId' }, templateShareable:'true' }" change="onChangeSensor">
+																					<core:ListItem key="{seriesIdentifierId}" text="{seriesIdentifierId}"/>
+																					<!--<core:Fragment binding="{ path:'/', sorter: {path: seriesIdentifierId }" fragmentName="xxx.fragment.User" type="XML"/>-->
+																				</Select>
+																				<DatePicker width="auto" valueFormat="dd-MM-yyyy" class="sapUiSmallMargin" change="onChangeDate"
+																					value="{path:'/dateValue', type:'sap.ui.model.type.Date', formatOptions: { style: 'long', strictParsing: true}}"/>
+																			</content>
+																		</ResponsivePopover>
+																<viz:Popover id="idPopOverFL"/>
+																<viz:VizFrame id="idVizFrameFL" vizType="timeseries_line">
+																	<viz:dataset>
+																		<viz.data:FlattenedDataset data="{/}">
+																			<viz.data:dimensions>
+																				<viz.data:DimensionDefinition name="time" value="{measureTime}" dataType="date"/>
+																			</viz.data:dimensions>
+																			<viz.data:measures>
+																				<viz.data:MeasureDefinition name="value" value="{value}"/>
+																			</viz.data:measures>
+																		</viz.data:FlattenedDataset>
+																	</viz:dataset>
+																	<viz:feeds>
+																		<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="value"/>
+																		<viz.feeds:FeedItem uid="timeAxis" type="Dimension" values="time"/>
+																	</viz:feeds>
+																</viz:VizFrame>
+															</Panel>
+														</items>
+													</VBox>
+												</items>
+											</VBox>
+											<!-- REAR LEFT -->
+											<VBox width="100%" height="50%" direction="Column" id="leftLower" alignItems="Start">
+												<items>
+													<VBox width="100%" height="100%">
+														<items>
+															<Panel id="chartPanelRL" expandable="false" expanded="true">
+																<headerToolbar>
+																	<Toolbar>
+																		<Title text="Header"/>
+																		<ToolbarSpacer/>
+																		<Button icon="sap-icon://settings" press="onSettingsButtonChange"/>
+																	</Toolbar>
+																</headerToolbar>
+																<ResponsivePopover id="popoverRL" title="{Name}" visible="false" class="sapUiPopupWithPadding" placement="Bottom">
+																	<content>
+																		<Select width="auto" class="sapUiSmallMargin" forceSelection="true"
+																			items="{ path: '/', sorter: { path: 'measurementId' }, templateShareable:'true' }" change="onChangeRun">
+																			<core:ListItem key="{measurementId}" text="{measurementId}"/>
+																		</Select>
+																		<Select width="auto" class="sapUiSmallMargin" forceSelection="true"
+																			items="{ path: '/', sorter: { path: 'seriesIdentifierId' }, templateShareable:'true' }" change="onChangeSensor">
+																			<core:ListItem key="{seriesIdentifierId}" text="{seriesIdentifierId}"/>
+																			<!--<core:Fragment binding="{ path:'/', sorter: {path: seriesIdentifierId }" fragmentName="xxx.fragment.User" type="XML"/>-->
+																		</Select>
+																		<DatePicker width="auto" valueFormat="dd-MM-yyyy" class="sapUiSmallMargin" change="onChangeDate"
+																			value="{path:'/dateValue', type:'sap.ui.model.type.Date', formatOptions: { style: 'long', strictParsing: true}}"/>
+																	</content>
+																</ResponsivePopover>
+																<viz:Popover id="idPopOverRL"/>
+																<viz:VizFrame id="idVizFrameRL" vizType="timeseries_line">
+																	<viz:dataset>
+																		<viz.data:FlattenedDataset data="{/}">
+																			<viz.data:dimensions>
+																				<viz.data:DimensionDefinition name="time" value="{measureTime}" dataType="date"/>
+																			</viz.data:dimensions>
+																			<viz.data:measures>
+																				<viz.data:MeasureDefinition name="value" value="{value}"/>
+																			</viz.data:measures>
+																		</viz.data:FlattenedDataset>
+																	</viz:dataset>
+																	<viz:feeds>
+																		<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="value"/>
+																		<viz.feeds:FeedItem uid="timeAxis" type="Dimension" values="time"/>
+																	</viz:feeds>
+																</viz:VizFrame>
+															</Panel>
+														</items>
+													</VBox>
+												</items>
+											</VBox>
+										</VBox>
+										<!-- END LEFT SECTION -->
+										<!-- MIDDLE SECTION -->
+										<VBox width="100%" height="100%" direction="Column" id="middleSection" alignItems="Center">
+											<items>
+												<HBox id="mainPicture" height="100%" width="100%" alignItems="Center">
+													<items>
+														<Image id="nova" src="nova.png" densityAware="false" width="100%" height="100%" press="handleImagePress">
+															<layoutData>
+																<FlexItemData growFactor="1"/>
+															</layoutData>
+														</Image>
+													</items>
+												</HBox>
+											</items>
+										</VBox>
+										<!-- END MIDDLE SECTION -->
+										<!-- RIGHT SECTION -->
+										<VBox id="rightSection" width="70%" height="100%">
+											<!-- FRONT RIGHT -->
+											<VBox width="100%" height="100%" direction="Column" id="rightUppper" alignItems="Start">
+												<items>
+													<VBox width="100%" height="100%">
+														<items>
+															<Panel id="chartPanelFR" expandable="false" expanded="true">
+																<headerToolbar>
+																	<Toolbar>
+																		<Title text="Header"/>
+																		<ToolbarSpacer/>
+																		<Button icon="sap-icon://settings" press="onSettingsButtonChange"/>
+																	</Toolbar>
+																</headerToolbar>
+																<ResponsivePopover id="popoverFR" title="{Name}" visible="false" class="sapUiPopupWithPadding" placement="Bottom">
+																	<content>
+																		<Select width="auto" class="sapUiSmallMargin" forceSelection="true"
+																			items="{ path: '/', sorter: { path: 'measurementId' }, templateShareable:'true' }" change="onChangeRun">
+																			<core:ListItem key="{measurementId}" text="{measurementId}"/>
+																		</Select>
+																		<Select width="auto" class="sapUiSmallMargin" forceSelection="true"
+																			items="{ path: '/', sorter: { path: 'seriesIdentifierId' }, templateShareable:'true' }" change="onChangeSensor">
+																			<core:ListItem key="{seriesIdentifierId}" text="{seriesIdentifierId}"/>
+																			<!--<core:Fragment binding="{ path:'/', sorter: {path: seriesIdentifierId }" fragmentName="xxx.fragment.User" type="XML"/>-->
+																		</Select>
+																		<DatePicker width="auto" valueFormat="dd-MM-yyyy" class="sapUiSmallMargin" change="onChangeDate"
+																			value="{path:'/dateValue', type:'sap.ui.model.type.Date', formatOptions: { style: 'long', strictParsing: true}}"/>
+																	</content>
+																</ResponsivePopover>
+																<viz:Popover id="idPopOverFR"/>
+																<viz:VizFrame id="idVizFrameFR" vizType="timeseries_line">
+																	<viz:dataset>
+																		<viz.data:FlattenedDataset data="{/}">
+																			<viz.data:dimensions>
+																				<viz.data:DimensionDefinition name="time" value="{measureTime}" dataType="date"/>
+																			</viz.data:dimensions>
+																			<viz.data:measures>
+																				<viz.data:MeasureDefinition name="value" value="{value}"/>
+																			</viz.data:measures>
+																		</viz.data:FlattenedDataset>
+																	</viz:dataset>
+																	<viz:feeds>
+																		<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="value"/>
+																		<viz.feeds:FeedItem uid="timeAxis" type="Dimension" values="time"/>
+																	</viz:feeds>
+																</viz:VizFrame>
+															</Panel>
+														</items>
+													</VBox>
+												</items>
+											</VBox>
+											<!-- REAR RIGHT -->
+											<VBox width="100%" height="50%" direction="Column" id="rightLower" alignItems="Start">
+												<items>
+													<VBox width="100%" height="100%">
+														<items>
+															<Panel id="chartPanelRR" width="100%" height="100%" expandable="false" expanded="true">
+																<headerToolbar>
+																	<Toolbar>
+																		<Title text="Header"/>
+																		<ToolbarSpacer/>
+																		<Button icon="sap-icon://settings" press="onSettingsButtonChange"/>
+																		<ResponsivePopover id="popoverRR" title="{Name}" visible="false" class="sapUiPopupWithPadding" placement="Bottom">
+																			<content>
+																				<Select width="auto" class="sapUiSmallMargin" forceSelection="true"
+																					items="{ path: '/', sorter: { path: 'measurementId' }, templateShareable:'true' }" change="onChangeRun">
+																					<core:ListItem key="{measurementId}" text="{measurementId}"/>
+																				</Select>
+																				<Select width="auto" class="sapUiSmallMargin" forceSelection="true"
+																					items="{ path: '/', sorter: { path: 'seriesIdentifierId' }, templateShareable:'true' }" change="onChangeSensor">
+																					<core:ListItem key="{seriesIdentifierId}" text="{seriesIdentifierId}"/>
+																					<!--<core:Fragment binding="{ path:'/', sorter: {path: seriesIdentifierId }" fragmentName="xxx.fragment.User" type="XML"/>-->
+																				</Select>
+																				<DatePicker width="auto" valueFormat="dd-MM-yyyy" class="sapUiSmallMargin" change="onChangeDate"
+																					value="{path:'/dateValue', type:'sap.ui.model.type.Date', formatOptions: { style: 'long', strictParsing: true}}"/>
+																			</content>
+																		</ResponsivePopover>
+																	</Toolbar>
+																</headerToolbar>
+																<viz:Popover id="idPopOverRR"/>
+																<viz:VizFrame id="idVizFrameRR" vizType="timeseries_line">
+																	<viz:dataset>
+																		<viz.data:FlattenedDataset data="{/}">
+																			<viz.data:dimensions>
+																				<viz.data:DimensionDefinition name="time" value="{measureTime}" dataType="date"/>
+																			</viz.data:dimensions>
+																			<viz.data:measures>
+																				<viz.data:MeasureDefinition name="value" value="{value}"/>
+																			</viz.data:measures>
+																		</viz.data:FlattenedDataset>
+																	</viz:dataset>
+																	<viz:feeds>
+																		<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="value"/>
+																		<viz.feeds:FeedItem uid="timeAxis" type="Dimension" values="time"/>
+																	</viz:feeds>
+																</viz:VizFrame>
+															</Panel>
+														</items>
+													</VBox>
+												</items>
+											</VBox>
+										</VBox>
 									</items>
-								</VBox>
+								</HBox>
+								<!-- END LEFT SECTION AND GRAPHS-->
+								<!-- GAUEGE DISPLAYS -->
+								<HBox width="100%" height="25%" id="hboxGauge">
+									<items>
+										<VBox width="100%" direction="Column" id="vboxG1" alignItems="End">
+											<items>
+												<Panel id="gaugeChart1" width="100%" height="100%" expandable="false" expanded="true">
+													<headerToolbar>
+														<Toolbar>
+															<Title text="G1"/>
+															<ToolbarSpacer/>
+															<Button icon="sap-icon://settings" press="onSettingsButtonChange"/>
+															<ResponsivePopover id="popoverG1" title="{Name}" visible="false" class="sapUiPopupWithPadding" placement="Bottom">
+																<content>
+																	<Select width="auto" class="sapUiSmallMargin" forceSelection="true"
+																		items="{ path: '/', sorter: { path: 'measurementId' }, templateShareable:'true' }" change="onChangeRun">
+																		<core:ListItem key="{measurementId}" text="{measurementId}"/>
+																	</Select>
+																	<Select width="auto" class="sapUiSmallMargin" forceSelection="true"
+																		items="{ path: '/', sorter: { path: 'seriesIdentifierId' }, templateShareable:'true' }" change="onChangeSensor">
+																		<core:ListItem key="{seriesIdentifierId}" text="{seriesIdentifierId}"/>
+																		<!--<core:Fragment binding="{ path:'/', sorter: {path: seriesIdentifierId }" fragmentName="xxx.fragment.User" type="XML"/>-->
+																	</Select>
+																	<DatePicker width="auto" valueFormat="dd-MM-yyyy" class="sapUiSmallMargin" change="onChangeDate"
+																		value="{path:'/dateValue', type:'sap.ui.model.type.Date', formatOptions: { style: 'long', strictParsing: true}}"/>
+																</content>
+															</ResponsivePopover>
+														</Toolbar>
+													</headerToolbar>
+													<html:div id="id_Gauge1"></html:div>
+												</Panel>
+											</items>
+										</VBox>
+										<VBox width="100%" direction="Column" id="vboxG2" alignItems="Center">
+											<items>
+												<Panel id="gaugeChart2" width="100%" height="100%" expandable="false" expanded="true">
+													<headerToolbar>
+														<Toolbar>
+															<Title text="G2"/>
+															<ToolbarSpacer/>
+															<Button icon="sap-icon://settings" press="onSettingsButtonChange"/>
+															<ResponsivePopover id="popoverG2" title="{Name}" visible="false" class="sapUiPopupWithPadding" placement="Bottom">
+																<content>
+																	<Select width="auto" class="sapUiSmallMargin" forceSelection="true"
+																		items="{ path: '/', sorter: { path: 'measurementId' }, templateShareable:'true' }" change="onChangeRun">
+																		<core:ListItem key="{measurementId}" text="{measurementId}"/>
+																	</Select>
+																	<Select width="auto" class="sapUiSmallMargin" forceSelection="true"
+																		items="{ path: '/', sorter: { path: 'seriesIdentifierId' }, templateShareable:'true' }" change="onChangeSensor">
+																		<core:ListItem key="{seriesIdentifierId}" text="{seriesIdentifierId}"/>
+																		<!--<core:Fragment binding="{ path:'/', sorter: {path: seriesIdentifierId }" fragmentName="xxx.fragment.User" type="XML"/>-->
+																	</Select>
+																	<DatePicker width="auto" valueFormat="dd-MM-yyyy" class="sapUiSmallMargin" change="onChangeDate"
+																		value="{path:'/dateValue', type:'sap.ui.model.type.Date', formatOptions: { style: 'long', strictParsing: true}}"/>
+																</content>
+															</ResponsivePopover>
+														</Toolbar>
+													</headerToolbar>
+													<html:div id="id_Gauge2"></html:div>
+												</Panel>
+											</items>
+										</VBox>
+										<VBox width="100%" direction="Column" id="vboxG3" alignItems="Start">
+											<items>
+												<Panel id="gaugeChart3" width="100%" height="100%" expandable="false" expanded="true">
+													<headerToolbar>
+														<Toolbar>
+															<Title text="Gauge 3"/>
+															<ToolbarSpacer/>
+															<Button icon="sap-icon://settings" press="onSettingsButtonChange"/>
+															<ResponsivePopover id="popoverG3" title="{Name}" visible="false" class="sapUiPopupWithPadding" placement="Bottom">
+																<content>
+																	<Select width="auto" class="sapUiSmallMargin" forceSelection="true"
+																		items="{ path: '/', sorter: { path: 'measurementId' }, templateShareable:'true' }" change="onChangeRun">
+																		<core:ListItem key="{measurementId}" text="{measurementId}"/>
+																	</Select>
+																	<Select width="auto" class="sapUiSmallMargin" forceSelection="true"
+																		items="{ path: '/', sorter: { path: 'seriesIdentifierId' }, templateShareable:'true' }" change="onChangeSensor">
+																		<core:ListItem key="{seriesIdentifierId}" text="{seriesIdentifierId}"/>
+																		<!--<core:Fragment binding="{ path:'/', sorter: {path: seriesIdentifierId }" fragmentName="xxx.fragment.User" type="XML"/>-->
+																	</Select>
+																	<DatePicker width="auto" valueFormat="dd-MM-yyyy" class="sapUiSmallMargin" change="onChangeDate"
+																		value="{path:'/dateValue', type:'sap.ui.model.type.Date', formatOptions: { style: 'long', strictParsing: true}}"/>
+																</content>
+															</ResponsivePopover>
+														</Toolbar>
+													</headerToolbar>
+													<html:div id="id_Gauge3"></html:div>
+												</Panel>
+											</items>
+										</VBox>
+									</items>
+								</HBox>
+								<!-- END OF GAUGE SPACE -->
 							</items>
-						</HBox>
+						</VBox>
 					</content>
+					<footer>
+						<Bar>
+							<contentMiddle>
+								<Text text="Made by Revolve NTNU and SAP" class="class_a"></Text>
+							</contentMiddle>
+						</Bar>
+					</footer>
 				</Page>
 			</pages>
 		</App>

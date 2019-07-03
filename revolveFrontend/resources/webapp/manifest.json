@@ -43,6 +43,9 @@
 	},
 
 	"sap.ui5": {
+		"config": {
+			"fullWidth": true
+		},
 		"rootView": {
 			"viewName": "Revolve.revolveFrontend.view.App",
 			"id": "app",
